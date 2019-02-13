@@ -6,7 +6,7 @@
   "description": "Say Hello World!",
   "ref": "github.com/ankaranika/flogo-extensions/HelloWorld",
   "author": "Anna Karanika <ankaranika@uth.gr>",
-	"homepage": "https://github.com/ankaranika/flogo-extensions/tree/master/HelloWorld",
+  "homepage": "https://github.com/ankaranika/flogo-extensions/tree/master/HelloWorld",
   "inputs":[
     {
       "name": "salutation",
