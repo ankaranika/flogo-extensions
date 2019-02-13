@@ -25,7 +25,12 @@ Inputs and Outputs:
       "type": "string"
     }
   ],
-  "outputs": []
+  "outputs": [
+    {
+      "name": "result",
+      "type": "string"
+    }
+  ]
 }
 ```
 ## Inputs
@@ -33,3 +38,8 @@ Inputs and Outputs:
 |:----------|:---------------|
 | name | The name to be saluted |
 | salutation | The kind o saluation |
+
+## Outputs
+| Output   | Description    |
+|:----------|:---------------|
+| result | The salutation to name |
