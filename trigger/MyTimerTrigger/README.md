@@ -4,11 +4,11 @@
 ## Installation
 
 ```bash
-flogo install github.com/ankaranika/flogo-extensions/tigger/MyTimerTrigger
+flogo install github.com/ankaranika/flogo-extensions/trigger/MyTimerTrigger
 ```
 Link for flogo web:
 ```bash
-https://github.com/ankaranika/flogo-extensions/tigger/MyTimerTrigger
+https://github.com/ankaranika/flogo-extensions/trigger/MyTimerTrigger
 ```
 
 ## Schema

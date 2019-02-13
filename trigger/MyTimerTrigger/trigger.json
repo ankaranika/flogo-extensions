@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "flogo:trigger",
   "title": "My Timer Trigger",
-  "ref": "github.com/ankaranika/flogo-extensions/tigger/MyTimerTrigger",
+  "ref": "github.com/ankaranika/flogo-extensions/trigger/MyTimerTrigger",
   "description": "This is a new Timer",
   "author": "Anna Karanika <ankaranika@uth.gr>",
   "homepage": "https://github.com/ankaranika/flogo-extensions/tree/master/trigger/MyTimerTrigger",
