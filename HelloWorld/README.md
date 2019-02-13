@@ -3,11 +3,11 @@
 ## 	Installation
 
 ```bash
-flogo install github.com/retgits/flogo-extensions/HelloWorld
+flogo install github.com/ankaranika/flogo-extensions/HelloWorld
 ```
 Link for flogo web:
 ```bash
-https://github.com/retgits/flogo-extensions/HelloWorld
+https://github.com/ankaranika/flogo-extensions/HelloWorld
 ```
 
 ##	Schema
