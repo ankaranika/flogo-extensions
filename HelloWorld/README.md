@@ -37,7 +37,7 @@ Inputs and Outputs:
 | Input   | Description    |
 |:----------|:---------------|
 | name | The name to be saluted |
-| salutation | The kind o saluation |
+| salutation | The kind of salutation |
 
 ## Outputs
 | Output   | Description    |
