@@ -1,0 +1,26 @@
+{
+  "name": "MyTimerTrigger",
+  "version": "0.0.1",
+  "type": "flogo:trigger",
+  "title": "My Timer Trigger",
+  "ref": "github.com/ankaranika/flogo-extensions/tigger/MyTimerTrigger",
+  "description": "This is a new Timer",
+  "author": "Anna Karanika <ankaranika@uth.gr>",
+  "homepage": "https://github.com/ankaranika/flogo-extensions/tree/master/trigger/MyTimerTrigger",
+  "settings":[
+  ],
+  "output": [
+    {
+      "name": "output",
+      "type": "string"
+    }
+  ],
+  "handler": {
+    "settings": [
+      {
+        "name": "seconds",
+        "type": "string"
+      }
+    ]
+  }
+}

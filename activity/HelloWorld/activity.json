@@ -4,9 +4,9 @@
   "type": "flogo:activity",
   "title": "Hello World",
   "description": "Say Hello World!",
-  "ref": "github.com/ankaranika/flogo-extensions/HelloWorld",
+  "ref": "github.com/ankaranika/flogo-extensions/activity/HelloWorld",
   "author": "Anna Karanika <ankaranika@uth.gr>",
-  "homepage": "https://github.com/ankaranika/flogo-extensions/tree/master/HelloWorld",
+  "homepage": "https://github.com/ankaranika/flogo-extensions/tree/master/activity/HelloWorld",
   "inputs":[
     {
       "name": "salutation",
