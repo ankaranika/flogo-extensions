@@ -8,7 +8,6 @@ import (
     "bytes"
     "strings"
     "io/ioutil"
-    "reflect"
     
     "github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
