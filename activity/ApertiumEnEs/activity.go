@@ -1,11 +1,14 @@
-package Apertium-en-es
+package ApertiumEnEs
 
 import (
     "fmt"
+    "os"
     "os/exec"
     "log"
     "bytes"
     "strings"
+    "io/ioutil"
+    "reflect"
     
     "github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
@@ -27,25 +30,32 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 
 // Eval implements activity.Activity.Eval
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
-
     // do eval
     sender := context.GetInput("ip").(string)
     req_id := context.GetInput("req_id").(string)
     
-    intxt := strings.Join("~/Documents/flogo/speech-translator/files/apertium/", sender, "/", req_id, "/english.txt")
-    outtxt := strings.Join("~/Documents/flogo/speech-translator/files/apertium/", sender, "/", req_id, "/spanish.txt")
+    home := os.Getenv("HOME")
+    intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium", sender, req_id, "english.txt"}, "/")
+    outtxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium", sender, req_id, "spanish.txt"}, "/")
     
     cmd := exec.Command("apertium", "en-es", intxt, outtxt)
     
-    var output bytes.Buffer
-    cmd.Stdout = &output
+    var stdout, stderr bytes.Buffer
+    cmd.Stdout = &stdout
+    cmd.Stderr = &stderr
     
-    err := cmd.Run()
-    if err != nil {
-        log.Fatal(err)
+    err1 := cmd.Run()
+    if err1 != nil {
+        fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
+        log.Fatal(err1)
+    }
+
+    result, err2 := ioutil.ReadFile(outtxt)
+    if err2 != nil{
+        panic("There was an error while translating text")
     }
     
-    fmt.Printf("in all caps: %q\n", output.String())
-
+    context.SetOutput("result", string(result[:]))
+    
     return true, nil
 }

@@ -1,2 +1,0 @@
-
-# 	Apertium-en-es - Activity

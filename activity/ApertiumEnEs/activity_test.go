@@ -1,4 +1,4 @@
-package HelloWorld
+package ApertiumEnEs
 
 import (
     "io/ioutil"
@@ -6,7 +6,6 @@ import (
 
     "github.com/TIBCOSoftware/flogo-lib/core/activity"
     "github.com/TIBCOSoftware/flogo-contrib/action/flow/test"
-
     "github.com/stretchr/testify/assert"
 )
 
@@ -50,14 +49,12 @@ func TestEval(t *testing.T) {
     tc := test.NewTestActivityContext(getActivityMetadata())
 
     //setup attrs
+    tc.SetInput("ip", "localhost")
+    tc.SetInput("req_id", "1")
 
-    tc.SetInput("name", "Flogo Dev")
-    tc.SetInput("salutation", "Hello")
-    
     act.Eval(tc)
 
     //check result attr
     result := tc.GetOutput("result")
-    assert.Equal(t, result, "The Flogo engine says Hello to Flogo Dev")
-
+    assert.Equal(t, "Esto es una frase de prueba .\n", result)
 }
