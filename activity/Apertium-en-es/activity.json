@@ -1,0 +1,20 @@
+{
+  "name": "Apertium-en-es",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "description": "Translate english to spanish text using Apertium",
+  "ref": "github.com/ankaranika/flogo-extensions/activity/Apertium-en-es",
+  "author": "Anna Karanika <ankaranika@uth.gr>",
+  "inputs":[
+    {
+      "name": "input",
+      "type": "string"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "output",
+      "type": "string"
+    }
+  ]
+}
