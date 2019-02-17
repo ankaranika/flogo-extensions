@@ -1,14 +1,14 @@
 
-# ApertiumEnEs - Activity
+# pocketsphinx - Activity
 
 ## Installation
 
 ```bash
-flogo install github.com/ankaranika/flogo-extensions/activity/ApertiumEnEs
+flogo install github.com/ankaranika/flogo-extensions/activity/pocketsphinx
 ```
 Link for flogo web:
 ```bash
-https://github.com/ankaranika/flogo-extensions/activity/ApertiumEnEs
+https://github.com/ankaranika/flogo-extensions/activity/pocketsphinx
 ```
 
 ## Schema
@@ -43,5 +43,4 @@ Inputs and Outputs:
 ## Outputs
 | Output   | Description    |
 |:----------|:---------------|
-| result | The translated text |
-
+| result | The transcribed text |
