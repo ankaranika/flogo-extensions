@@ -57,9 +57,9 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
         fmt.Println(err1)
     }
     
-    _, err1 := f.WriteString(stdout.String())
+    _, err2 := f.WriteString(stdout.String())
     if err != nil {
-        fmt.Println(err1)
+        fmt.Println(err2)
         f.Close()
     }
 
