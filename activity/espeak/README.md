@@ -1,5 +1,5 @@
 
-# espeak - Activity
+# eSpeak-NG - Activity
 
 ## Installation
 

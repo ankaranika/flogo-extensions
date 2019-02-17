@@ -4,7 +4,7 @@
   "type": "flogo:activity",
   "title": "eSpeak-NG",
   "description": "Produce speech from spanish text",
-  "ref": "github.com/ankaranika/flogo-extensions/activity/ApertiumEnEs",
+  "ref": "github.com/ankaranika/flogo-extensions/activity/espeak",
   "author": "Anna Karanika <ankaranika@uth.gr>",
   "inputs":[
     {
