@@ -36,7 +36,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     exec_path := strings.Join([]string{home, "Documents/pocketsphinx/hello_ps"}, "/")
     intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/sphinx", sender, req_id, "speech.raw"}, "/")
     
-    cmd := exec.Command(exec_path, intxt, outtxt)
+    cmd := exec.Command(exec_path, intxt)
     
     var stdout, stderr bytes.Buffer
     cmd.Stdout = &stdout

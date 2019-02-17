@@ -56,5 +56,5 @@ func TestEval(t *testing.T) {
 
 	//check result attr
     result := tc.GetOutput("result")
-    assert.Equal(t, "This is a test sentence.\n", result)
+    assert.Equal(t, "go forward ten meters", result)
 }
