@@ -2,7 +2,7 @@ package pocketsphinx
 
 import (
     "fmt"
-    "os"
+    //"os"
     "os/exec"
     "log"
     "bytes"
@@ -32,7 +32,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     sender := context.GetInput("ip").(string)
     req_id := context.GetInput("req_id").(string)
     
-    home := "/home/anna"//os.Getenv("HOME")
+    home := "/home/anna" //os.Getenv("HOME")
     exec_path := strings.Join([]string{home, "Documents/pocketsphinx/hello_ps"}, "/")
     intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/sphinx", sender, req_id, "speech.raw"}, "/")
     
