@@ -37,7 +37,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium", sender, req_id, "english.txt"}, "/")
     outtxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium", sender, req_id, "spanish.txt"}, "/")
     
-    cmd := exec.Command("apertium", "en-es", intxt, outtxt)
+    cmd := exec.Command("/usr/bin/apertium", "en-es", intxt, outtxt)
     
     var stdout, stderr bytes.Buffer
     cmd.Stdout = &stdout
