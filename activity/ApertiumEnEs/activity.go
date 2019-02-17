@@ -33,7 +33,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     sender := context.GetInput("ip").(string)
     req_id := context.GetInput("req_id").(string)
     
-    home := os.Getenv("HOME")
+    home := "/home/anna" //os.Getenv("HOME")
     intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium", sender, req_id, "english.txt"}, "/")
     outtxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium", sender, req_id, "spanish.txt"}, "/")
     
