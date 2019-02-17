@@ -2,7 +2,7 @@ package ApertiumEnEs
 
 import (
     "fmt"
-    //"os"
+    "os"
     "os/exec"
     "log"
     "bytes"

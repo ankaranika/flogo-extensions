@@ -2,7 +2,7 @@ package pocketsphinx
 
 import (
     "fmt"
-    //"os"
+    "os"
     "os/exec"
     "log"
     "bytes"
