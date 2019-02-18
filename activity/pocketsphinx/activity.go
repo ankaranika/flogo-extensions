@@ -7,6 +7,7 @@ import (
     "log"
     "bytes"
     "strings"
+    "io/ioutil"
     
     "github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
@@ -31,12 +32,24 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     // do eval
     sender := context.GetInput("ip").(string)
     req_id := context.GetInput("req_id").(string)
+    speech := context.GetInput("speech")
     
     home := os.Getenv("HOME")
     //fmt.Println("home:", home)
     exec_path := strings.Join([]string{home, "Documents/pocketsphinx/hello_ps"}, "/")
     inraw := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "speech.raw"}, "/")
     outtxt := strings.Join([]string{home, "Document/flogo/speech-translator/files", sender, req_id, "english.txt"}, "/")
+    
+    f, err := os.Create(inraw)
+    if err != nil {
+        fmt.Println(err)
+    }
+    
+    err2 := ioutil.WriteAll(inraw, speech, 0777)
+    if err != nil {
+        fmt.Println(err2)
+        f.Close()
+    }
     
     cmd := exec.Command(exec_path, inraw)
     
@@ -50,18 +63,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
         log.Fatal(err1)
     }
 
-    context.SetOutput("result", stdout.String())
+    context.SetOutput("text", stdout.String())
     
-    f, err1 := os.Create(outtxt)
-    if err1 != nil {
-        fmt.Println(err1)
-    }
-    
-    _, err2 := f.WriteString(stdout.String())
-    if err != nil {
-        fmt.Println(err2)
-        f.Close()
-    }
-
     return true, nil
 }

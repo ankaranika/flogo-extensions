@@ -51,10 +51,11 @@ func TestEval(t *testing.T) {
     //setup attrs
     tc.SetInput("ip", "localhost")
     tc.SetInput("req_id", "1")
+    tc.SetInput("english", "This is a test sentence.")
 
     act.Eval(tc)
 
     //check result attr
-    result := tc.GetOutput("result")
-    assert.Equal(t, "Esto es una frase de prueba .\n", result)
+    result := tc.GetOutput("spanish")
+    assert.Equal(t, "Esto es una frase de prueba .", result)
 }

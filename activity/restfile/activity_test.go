@@ -44,7 +44,7 @@ func TestEval(t *testing.T) {
     defer func() {
         if r := recover(); r != nil {
             t.Failed()
-            t.Errorf("panic during execution: %v", r)
+            t.Errorf("panic during execution, defer: %v", r)
         }
     }()
 
@@ -52,7 +52,7 @@ func TestEval(t *testing.T) {
     tc := test.NewTestActivityContext(getActivityMetadata())
 
     //setup attrs
-    tc.SetInput("uri", "localhost:9691/:ip/:req_id/english.txt")
+    tc.SetInput("uri", "127.0.0.1:9691/:ip/:req_id/english.txt")
     tc.SetInput("method", "POST")
     tc.SetInput("pathParams", map[string]string{"ip": "localhost", "req_id": "2"})
     tc.SetInput("type", "text/plain")
@@ -62,12 +62,12 @@ func TestEval(t *testing.T) {
     //check result attr
     filename := strings.Join([]string{os.Getenv("HOME"), "Documents/flogo/speech-translator/files", "localhost", "2", "english.txt"}, "/")
     
-    fi, err := os.Stat(filename);
+    fi, err := os.Stat(filename)
     if err != nil {
-        t.Errorf("panic during execution: %v", err)
+        t.Errorf("panic during execution, open file: %v", err)
     }
     // get the size
     size := fi.Size()
-    assert.Equal(t, 14831, int(size))
+    assert.Equal(t, 25, int(size))
     
 }

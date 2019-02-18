@@ -3,7 +3,6 @@ package restfile
 import (
     "fmt"
     "os"
-    "reflect"
     "strings"
     "io/ioutil"
     "net/http"
@@ -35,6 +34,8 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     pathParams := context.GetInput("pathParams").(map[string]string)
     filetype := context.GetInput("type").(string)
     
+    fmt.Println(method)
+    
     home := os.Getenv("HOME")
     
     uriParts := strings.Split(uri, "/")
@@ -42,6 +43,8 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     filename := strings.Join([]string{home, "Documents/flogo/speech-translator/files", pathParams["ip"], pathParams["req_id"], uriParts[3]}, "/")
     
     uri = strings.Join([]string{uriParts[0], pathParams["ip"], pathParams["req_id"], uriParts[3]}, "/")
+    
+    fmt.Println(filename)
     
     switch method {
         case "GET":
@@ -68,12 +71,10 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
             }
         
         case "POST":
-            f, err := os.Open("filename")
+            f, err := os.Open(filename)
             if err != nil {
                 panic(err)
             }
-            
-            fmt.Println("type of f:", reflect.TypeOf(f))
             
             resp, err2 := http.Post(uri, filetype, f)
             if err2 != nil {

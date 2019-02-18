@@ -16,7 +16,7 @@ Inputs and Outputs:
 
 ```json
 {
-"inputs":[
+  "inputs":[
     {
       "name": "ip",
       "type": "string"
@@ -24,11 +24,15 @@ Inputs and Outputs:
     {
       "name": "req_id",
       "type": "string"
+    },
+    {
+      "name": "speech",
+      "type": "any"
     }
   ],
   "outputs": [
     {
-      "name": "result",
+      "name": "text",
       "type": "string"
     }
   ]
@@ -38,9 +42,10 @@ Inputs and Outputs:
 | Input   | Description    |
 |:----------|:---------------|
 | ip | The ip of the request sender |
-| req_id | The request id from the specified sender |
+| req_id | The request id of the specified sender |
+| speech | The speech to be transcribed |
 
 ## Outputs
 | Output   | Description    |
 |:----------|:---------------|
-| result | The transcribed text |
+| text | The transcribed text |

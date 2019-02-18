@@ -16,7 +16,7 @@ Inputs and Outputs:
 
 ```json
 {
-"inputs":[
+  "inputs":[
     {
       "name": "ip",
       "type": "string"
@@ -24,11 +24,15 @@ Inputs and Outputs:
     {
       "name": "req_id",
       "type": "string"
+    },
+    {
+      "name": "english",
+      "type": "string"
     }
   ],
   "outputs": [
     {
-      "name": "result",
+      "name": "spanish",
       "type": "string"
     }
   ]
@@ -39,9 +43,10 @@ Inputs and Outputs:
 |:----------|:---------------|
 | ip | The ip of the request sender |
 | req_id | The request id from the specified sender |
+| english | The initial text |
 
 ## Outputs
 | Output   | Description    |
 |:----------|:---------------|
-| result | The translated text |
+| spanish | The translated text |
 

@@ -14,11 +14,15 @@
     {
       "name": "req_id",
       "type": "string"
+    },
+    {
+      "name": "english",
+      "type": "string"
     }
   ],
   "outputs": [
     {
-      "name": "result",
+      "name": "spanish",
       "type": "string"
     }
   ]

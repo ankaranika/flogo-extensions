@@ -1,11 +1,14 @@
 package pocketsphinx
 
 import (
-	"io/ioutil"
-	"testing"
+    "os"
+    "strings"
+    "log"
+    "io/ioutil"
+    "testing"
 
-	"github.com/TIBCOSoftware/flogo-lib/core/activity"
-	"github.com/TIBCOSoftware/flogo-contrib/action/flow/test"
+    "github.com/TIBCOSoftware/flogo-lib/core/activity"
+    "github.com/TIBCOSoftware/flogo-contrib/action/flow/test"
     "github.com/stretchr/testify/assert"
 )
 
@@ -13,48 +16,63 @@ var activityMetadata *activity.Metadata
 
 func getActivityMetadata() *activity.Metadata {
 
-	if activityMetadata == nil {
-		jsonMetadataBytes, err := ioutil.ReadFile("activity.json")
-		if err != nil{
-			panic("No Json Metadata found for activity.json path")
-		}
+    if activityMetadata == nil {
+        jsonMetadataBytes, err := ioutil.ReadFile("activity.json")
+        if err != nil{
+            panic("No Json Metadata found for activity.json path")
+        }
 
-		activityMetadata = activity.NewMetadata(string(jsonMetadataBytes))
-	}
+        activityMetadata = activity.NewMetadata(string(jsonMetadataBytes))
+    }
 
-	return activityMetadata
+    return activityMetadata
 }
 
 func TestCreate(t *testing.T) {
 
-	act := NewActivity(getActivityMetadata())
+    act := NewActivity(getActivityMetadata())
 
-	if act == nil {
-		t.Error("Activity Not Created")
-		t.Fail()
-		return
-	}
+    if act == nil {
+        t.Error("Activity Not Created")
+        t.Fail()
+        return
+    }
 }
 
 func TestEval(t *testing.T) {
 
-	defer func() {
-		if r := recover(); r != nil {
-			t.Failed()
-			t.Errorf("panic during execution: %v", r)
-		}
-	}()
+    defer func() {
+        if r := recover(); r != nil {
+            t.Failed()
+            t.Errorf("panic during execution: %v", r)
+        }
+    }()
 
-	act := NewActivity(getActivityMetadata())
-	tc := test.NewTestActivityContext(getActivityMetadata())
+    act := NewActivity(getActivityMetadata())
+    tc := test.NewTestActivityContext(getActivityMetadata())
 
-	//setup attrs
+    //setup attrs
+    
+    home := os.Getenv("HOME")
+    filename := strings.Join([]string{home, "Documents/pocketsphinx/goforward.raw"}, "/")
+    
+    speechfile, err1 := os.Open(filename)
+    if err1 != nil {
+        log.Fatal(err1)
+    }
+    
+    speech, err2 := speechfile.readAll(speechfile)
+    if err2 != nil {
+        log.Fatal(err2)
+    }
+    
     tc.SetInput("ip", "localhost")
     tc.SetInput("req_id", "1")
+    tc.SetInput("speech", speech)
 
-	act.Eval(tc)
+    act.Eval(tc)
 
-	//check result attr
-    result := tc.GetOutput("result")
-    assert.Equal(t, "go forward ten meters", result)
+    //check result attr
+    text := tc.GetOutput("text")
+    assert.Equal(t, "go forward ten meters", text)
 }

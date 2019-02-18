@@ -32,30 +32,42 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     // do eval
     sender := context.GetInput("ip").(string)
     req_id := context.GetInput("req_id").(string)
+    english := context.GetInput("english").(string)
     
     home := os.Getenv("HOME")
     //fmt.Println("home:", home)
     intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "english.txt"}, "/")
     outtxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "spanish.txt"}, "/")
     
-    cmd := exec.Command("/usr/bin/apertium", "en-es", intxt, outtxt)
+    f, err1 := os.Create(intxt)
+    if err1 != nil {
+        fmt.Println(err1)
+    }
+    
+    _, err2 := f.WriteString(english)
+    if err != nil {
+        fmt.Println(err2)
+        f.Close()
+    }
+    
+    cmd := exec.Command("apertium", "en-es", intxt, outtxt)
     
     var stdout, stderr bytes.Buffer
     cmd.Stdout = &stdout
     cmd.Stderr = &stderr
     
-    err1 := cmd.Run()
-    if err1 != nil {
-        fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
-        log.Fatal(err1)
+    err3 := cmd.Run()
+    if err3 != nil {
+        fmt.Println(fmt.Sprint(err3) + ": " + stderr.String())
+        log.Fatal(err3)
     }
 
-    result, err2 := ioutil.ReadFile(outtxt)
-    if err2 != nil{
-        panic("There was an error while translating text")
+    spanish, err4 := ioutil.ReadFile(outtxt)
+    if err4 != nil{
+        panic("There was an error while reading translated text")
     }
     
-    context.SetOutput("result", string(result[:]))
+    context.SetOutput("spanish", string(spanish))
     
     return true, nil
 }

@@ -14,11 +14,15 @@
     {
       "name": "req_id",
       "type": "string"
+    },
+    {
+      "name": "speech",
+      "type": "any"
     }
   ],
   "outputs": [
     {
-      "name": "result",
+      "name": "text",
       "type": "string"
     }
   ]
