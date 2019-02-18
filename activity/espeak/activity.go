@@ -36,8 +36,8 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     
     home := os.Getenv("HOME")
     //fmt.Println("home:", home)
-    intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/espeak", sender, req_id, "spanish.txt"}, "/")
-    outwav := strings.Join([]string{home, "Documents/flogo/speech-translator/files/espeak", sender, req_id, "spanish.wav"}, "/")
+    intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "spanish.txt"}, "/")
+    outwav := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "spanish.wav"}, "/")
     
     cmd := exec.Command("espeak-ng", "-ves", "-s", "140", "-f", intxt, "-w", outwav)
     

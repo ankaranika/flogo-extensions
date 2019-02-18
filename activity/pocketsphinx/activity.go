@@ -35,8 +35,8 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     home := os.Getenv("HOME")
     //fmt.Println("home:", home)
     exec_path := strings.Join([]string{home, "Documents/pocketsphinx/hello_ps"}, "/")
-    inraw := strings.Join([]string{home, "Documents/flogo/speech-translator/files/sphinx", sender, req_id, "speech.raw"}, "/")
-    outtxt := strings.Join([]string{home, "Document/flogo/speech-translator/files/sphinx", sender, req_id, "english.txt"}, "/")
+    inraw := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "speech.raw"}, "/")
+    outtxt := strings.Join([]string{home, "Document/flogo/speech-translator/files", sender, req_id, "english.txt"}, "/")
     
     cmd := exec.Command(exec_path, inraw)
     
@@ -53,7 +53,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     context.SetOutput("result", stdout.String())
     
     f, err1 := os.Create(outtxt)
-    if err != nil {
+    if err1 != nil {
         fmt.Println(err1)
     }
     

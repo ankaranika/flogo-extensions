@@ -1,0 +1,38 @@
+{
+  "name": "restfile",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "title": "Invoke REST service with file",
+  "description": "Same as default rest, but just for files",
+  "ref": "github.com/ankaranika/flogo-extensions/activity/restfile",
+  "author": "Anna Karanika <ankaranika@uth.gr>",
+  "inputs":[
+    {
+      "name": "uri",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "method",
+      "type": "string",
+      "required": true,
+      "allowed" : ["GET", "POST"]
+    },
+    {
+      "name": "pathParams",
+      "type": "params"
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "required": true,
+      "allowed": ["text/plain", "audio/wav", "audio/basic"]
+    }
+  ],
+  "outputs": [
+    {
+      "name": "status",
+      "type": "bool"
+    }
+  ]
+}

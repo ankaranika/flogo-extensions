@@ -35,8 +35,8 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     
     home := os.Getenv("HOME")
     //fmt.Println("home:", home)
-    intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium", sender, req_id, "english.txt"}, "/")
-    outtxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium", sender, req_id, "spanish.txt"}, "/")
+    intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "english.txt"}, "/")
+    outtxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "spanish.txt"}, "/")
     
     cmd := exec.Command("/usr/bin/apertium", "en-es", intxt, outtxt)
     
