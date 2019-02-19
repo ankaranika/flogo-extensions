@@ -7,7 +7,6 @@ import (
     "log"
     "bytes"
     "strings"
-    "io/ioutil"
     
     "github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
@@ -35,22 +34,20 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     english := context.GetInput("english").(string)
     
     home := os.Getenv("HOME")
-    //fmt.Println("home:", home)
     intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "english.txt"}, "/")
-    outtxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "spanish.txt"}, "/")
     
     f, err1 := os.Create(intxt)
     if err1 != nil {
-        fmt.Println(err1)
+        log.Fatal(err1)
     }
-    
     _, err2 := f.WriteString(english)
-    if err != nil {
-        fmt.Println(err2)
+    if err2 != nil {
+        log.Fatal(err2)
         f.Close()
     }
+    f.Close()
     
-    cmd := exec.Command("apertium", "en-es", intxt, outtxt)
+    cmd := exec.Command("apertium", "en-es", "-u", intxt)
     
     var stdout, stderr bytes.Buffer
     cmd.Stdout = &stdout
@@ -62,12 +59,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
         log.Fatal(err3)
     }
 
-    spanish, err4 := ioutil.ReadFile(outtxt)
-    if err4 != nil{
-        panic("There was an error while reading translated text")
-    }
-    
-    context.SetOutput("spanish", string(spanish))
+    context.SetOutput("spanish", stdout.String())
     
     return true, nil
 }

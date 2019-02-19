@@ -32,23 +32,15 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     // do eval
     sender := context.GetInput("ip").(string)
     req_id := context.GetInput("req_id").(string)
-    speech := context.GetInput("speech")
+    speech := context.GetInput("speech").([]byte)
     
     home := os.Getenv("HOME")
-    //fmt.Println("home:", home)
     exec_path := strings.Join([]string{home, "Documents/pocketsphinx/hello_ps"}, "/")
     inraw := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "speech.raw"}, "/")
-    outtxt := strings.Join([]string{home, "Document/flogo/speech-translator/files", sender, req_id, "english.txt"}, "/")
-    
-    f, err := os.Create(inraw)
-    if err != nil {
-        fmt.Println(err)
-    }
-    
-    err2 := ioutil.WriteAll(inraw, speech, 0777)
-    if err != nil {
-        fmt.Println(err2)
-        f.Close()
+
+    err1 := ioutil.WriteFile(inraw, speech, 0644)
+    if err1 != nil {
+        log.Fatal(err1)
     }
     
     cmd := exec.Command(exec_path, inraw)
@@ -57,10 +49,10 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     cmd.Stdout = &stdout
     cmd.Stderr = &stderr
     
-    err1 := cmd.Run()
-    if err1 != nil {
-        fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
-        log.Fatal(err1)
+    err2 := cmd.Run()
+    if err2 != nil {
+        fmt.Println(fmt.Sprint(err2) + ": " + stderr.String())
+        log.Fatal(err2)
     }
 
     context.SetOutput("text", stdout.String())

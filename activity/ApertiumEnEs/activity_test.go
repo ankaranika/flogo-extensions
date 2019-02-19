@@ -50,7 +50,7 @@ func TestEval(t *testing.T) {
 
     //setup attrs
     tc.SetInput("ip", "localhost")
-    tc.SetInput("req_id", "1")
+    tc.SetInput("req_id", "2")
     tc.SetInput("english", "This is a test sentence.")
 
     act.Eval(tc)

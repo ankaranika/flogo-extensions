@@ -16,7 +16,7 @@ Inputs and Outputs:
 
 ```json
 {
-"inputs":[
+  "inputs":[
     {
       "name": "ip",
       "type": "string"
@@ -24,12 +24,29 @@ Inputs and Outputs:
     {
       "name": "req_id",
       "type": "string"
+    },
+    {
+      "name": "text",
+      "type": "string"
+    }
+  ],
+  "outputs":[
+    {
+      "name": "speech",
+      "type": "any"
     }
   ]
 }
 ```
+
 ## Inputs
 | Input   | Description    |
 |:----------|:---------------|
 | ip | The ip of the request sender |
 | req_id | The request id from the specified sender |
+| text | The text to be spoken |
+
+## Outputs
+| Output | Description |
+|:----------|:---------------|
+| speech | The spoken text |

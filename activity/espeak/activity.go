@@ -7,7 +7,7 @@ import (
     "log"
     "bytes"
     "strings"
-    //"io/ioutil"
+    "io/ioutil"
     
     "github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
@@ -33,13 +33,14 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     // do eval
     sender := context.GetInput("ip").(string)
     req_id := context.GetInput("req_id").(string)
+    text := context.GetInput("text").(string)
     
     home := os.Getenv("HOME")
-    //fmt.Println("home:", home)
-    intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "spanish.txt"}, "/")
+    //intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "spanish.txt"}, "/")
     outwav := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "spanish.wav"}, "/")
     
-    cmd := exec.Command("espeak-ng", "-ves", "-s", "140", "-f", intxt, "-w", outwav)
+    //cmd := exec.Command("espeak-ng", "-ves", "-s", "140", "-f", intxt, "-w", outwav)
+    cmd := exec.Command("espeak-ng", "-ves", "-s", "140", "-w", outwav, text)
     
     var stdout, stderr bytes.Buffer
     cmd.Stdout = &stdout
@@ -50,6 +51,13 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
         fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
         log.Fatal(err1)
     }
+    
+    speech, err2 := ioutil.ReadFile(outwav)
+    if err2 != nil {
+        log.Fatal(err2)
+    }
+    
+    context.SetOutput("speech", speech)
 
     return true, nil
 }

@@ -54,14 +54,9 @@ func TestEval(t *testing.T) {
     //setup attrs
     
     home := os.Getenv("HOME")
-    filename := strings.Join([]string{home, "Documents/pocketsphinx/goforward.raw"}, "/")
+    speechfile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/localhost/1/english.raw"}, "/")
     
-    speechfile, err1 := os.Open(filename)
-    if err1 != nil {
-        log.Fatal(err1)
-    }
-    
-    speech, err2 := speechfile.readAll(speechfile)
+    speech, err2 := ioutil.ReadFile(speechfile)
     if err2 != nil {
         log.Fatal(err2)
     }

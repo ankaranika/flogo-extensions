@@ -14,6 +14,16 @@
     {
       "name": "req_id",
       "type": "string"
+    },
+    {
+      "name": "text",
+      "type": "string"
+    }
+  ],
+  "outputs":[
+    {
+      "name": "speech",
+      "type": "any"
     }
   ]
 }
