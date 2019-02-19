@@ -1,0 +1,21 @@
+{
+  "name": "loadfromfile",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "title": "Load from file",
+  "description": "Load content froma file",
+  "ref": "github.com/ankaranika/flogo-extensions/activity/loadfromfile",
+  "author": "Anna Karanika <ankaranika@uth.gr>",
+  "inputs":[
+    {
+      "name": "path",
+      "type": "string"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "content",
+      "type": "any"
+    }
+  ]
+}
