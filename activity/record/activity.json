@@ -1,0 +1,15 @@
+{
+  "name": "record",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "title": "Record audio",
+  "description": "Record audio from microphone for 5 seconds",
+  "ref": "github.com/ankaranika/flogo-extensions/activity/record",
+  "author": "Anna Karanika <ankaranika@uth.gr>",
+  "outputs":[
+    {
+      "name": "recording",
+      "type": "any"
+    }
+  ]
+}
