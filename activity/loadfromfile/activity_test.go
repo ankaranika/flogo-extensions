@@ -49,7 +49,7 @@ func TestEval(t *testing.T) {
     tc := test.NewTestActivityContext(getActivityMetadata())
 
     //setup attrs
-    tc.SetInput("path", "/home/anna/Documents/flogo/speech-translator/files/localhost/3/spanish.txt")
+    tc.SetInput("path", "/home/anna/Documents/flogo/speech-translator/files/spanish.txt")
 
     act.Eval(tc)
 

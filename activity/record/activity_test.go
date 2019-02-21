@@ -62,10 +62,18 @@ func TestEval(t *testing.T) {
     
     home := os.Getenv("HOME")
     audiofile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/recording.raw"}, "/")
+    dir := strings.Join([]string{home, "Documents/flogo/speech-translator/files/"}, "/")
     
-    err1 := ioutil.WriteFile(audiofile, recording, 0644)
-    if err1 != nil {
-        log.Fatal(err1)
+    if _, err1 := os.Stat(dir); os.IsNotExist(err1) {
+        err2 := os.MkdirAll(dir, 0755)
+        if err2 != nil {
+            log.Fatal(err2)
+        }
+    }
+    
+    err3 := ioutil.WriteFile(audiofile, recording, 0644)
+    if err3 != nil {
+        log.Fatal(err3)
     }
 
     cmd := exec.Command("aplay", "-f", "S16_LE", "-r16", "-c", "1", audiofile)
@@ -74,9 +82,15 @@ func TestEval(t *testing.T) {
     cmd.Stdout = &stdout
     cmd.Stderr = &stderr
     
-    err2 := cmd.Run()
-    if err2 != nil {
-        fmt.Println(fmt.Sprint(err2) + ": " + stderr.String())
-        log.Fatal(err2)
+    err4 := cmd.Run()
+    if err4 != nil {
+        fmt.Println(fmt.Sprint(err4) + ": " + stderr.String())
+        log.Fatal(err4)
     }
+    
+    err5 := os.Remove(audiofile)
+    if err5 != nil {
+        log.Fatal(err5)
+    }
+    
 }

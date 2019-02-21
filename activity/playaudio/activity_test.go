@@ -52,7 +52,7 @@ func TestEval(t *testing.T) {
 
     //setup attrs
     home := os.Getenv("HOME")
-    audiofile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/localhost/3/spanish.wav"}, "/")
+    audiofile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/spanish.wav"}, "/")
     
     audio, err := ioutil.ReadFile(audiofile)
     if err != nil {
