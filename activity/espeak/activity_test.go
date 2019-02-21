@@ -51,8 +51,8 @@ func TestEval(t *testing.T) {
     tc := test.NewTestActivityContext(getActivityMetadata())
 
     //setup attrs
-    tc.SetInput("ip", "localhost")
-    tc.SetInput("req_id", "3")
+    //tc.SetInput("ip", "localhost")
+    //tc.SetInput("req_id", "3")
     tc.SetInput("text", "Esto es una frase de prueba")
 
     act.Eval(tc)
@@ -61,7 +61,7 @@ func TestEval(t *testing.T) {
     
     speech := tc.GetOutput("speech").([]byte)
     
-    wav := strings.Join([]string{os.Getenv("HOME"), "Documents/flogo/speech-translator/files", "localhost", "3", "spanish.wav"}, "/")
+    wav := strings.Join([]string{os.Getenv("HOME"), "Documents/flogo/speech-translator/files/spanish.wav"}, "/")
     
     fi, err := os.Stat(wav);
     if err != nil {

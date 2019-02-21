@@ -54,15 +54,15 @@ func TestEval(t *testing.T) {
     //setup attrs
     
     home := os.Getenv("HOME")
-    speechfile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/localhost/1/english.raw"}, "/")
+    speechfile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/english.raw"}, "/")
     
     speech, err2 := ioutil.ReadFile(speechfile)
     if err2 != nil {
         log.Fatal(err2)
     }
     
-    tc.SetInput("ip", "localhost")
-    tc.SetInput("req_id", "1")
+    //tc.SetInput("ip", "localhost")
+    //tc.SetInput("req_id", "1")
     tc.SetInput("speech", speech)
 
     act.Eval(tc)

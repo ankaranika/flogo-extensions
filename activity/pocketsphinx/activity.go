@@ -30,17 +30,24 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 // Eval implements activity.Activity.Eval
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     // do eval
-    sender := context.GetInput("ip").(string)
-    req_id := context.GetInput("req_id").(string)
+    //sender := context.GetInput("ip").(string)
+    //req_id := context.GetInput("req_id").(string)
     speech := context.GetInput("speech").([]byte)
     
     home := os.Getenv("HOME")
     exec_path := strings.Join([]string{home, "Documents/pocketsphinx/hello_ps"}, "/")
-    inraw := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "speech.raw"}, "/")
-
-    err1 := ioutil.WriteFile(inraw, speech, 0644)
-    if err1 != nil {
-        log.Fatal(err1)
+    inraw := strings.Join([]string{home, "Documents/flogo/speech-translator/files/pocketsphinx/speech.raw"}, "/")
+    dir := strings.Join([]string{home, "Documents/flogo/speech-translator/files/pocketsphinx"}, "/")
+    
+    if _, err1 := os.Stat(dir); os.IsNotExist(err1) {
+        err2 := os.MkdirAll(dir, 0755)
+        if err2 != nil {
+            log.Fatal(err2)
+        }
+    }
+    err3 := ioutil.WriteFile(inraw, speech, 0644)
+    if err3 != nil {
+        log.Fatal(err3)
     }
     
     cmd := exec.Command(exec_path, inraw)
@@ -49,12 +56,17 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     cmd.Stdout = &stdout
     cmd.Stderr = &stderr
     
-    err2 := cmd.Run()
-    if err2 != nil {
-        fmt.Println(fmt.Sprint(err2) + ": " + stderr.String())
-        log.Fatal(err2)
+    err4 := cmd.Run()
+    if err4 != nil {
+        fmt.Println(fmt.Sprint(err4) + ": " + stderr.String())
+        log.Fatal(err4)
     }
 
+    err5 := os.Remove(inraw)
+    if err5 != nil {
+        log.Fatal(err5)
+    }
+    
     context.SetOutput("text", stdout.String())
     
     return true, nil

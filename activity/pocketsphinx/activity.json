@@ -1,20 +1,12 @@
 {
   "name": "pocketsphinx",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "flogo:activity",
   "title": "PocketSphinx",
   "description": "Transcribe text using CMU pocketsphinx",
   "ref": "github.com/ankaranika/flogo-extensions/activity/pocketsphinx",
   "author": "Anna Karanika <ankaranika@uth.gr>",
   "inputs":[
-    {
-      "name": "ip",
-      "type": "string"
-    },
-    {
-      "name": "req_id",
-      "type": "string"
-    },
     {
       "name": "speech",
       "type": "any"

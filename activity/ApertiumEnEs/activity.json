@@ -1,20 +1,12 @@
 {
   "name": "ApertiumEnEs",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "flogo:activity",
   "title": "Apertium en-es",
   "description": "Translate english text to spanish using Apertium",
   "ref": "github.com/ankaranika/flogo-extensions/activity/ApertiumEnEs",
   "author": "Anna Karanika <ankaranika@uth.gr>",
   "inputs":[
-    {
-      "name": "ip",
-      "type": "string"
-    },
-    {
-      "name": "req_id",
-      "type": "string"
-    },
     {
       "name": "english",
       "type": "string"

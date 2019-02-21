@@ -29,20 +29,29 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 // Eval implements activity.Activity.Eval
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     // do eval
-    sender := context.GetInput("ip").(string)
-    req_id := context.GetInput("req_id").(string)
+    //sender := context.GetInput("ip").(string)
+    //req_id := context.GetInput("req_id").(string)
     english := context.GetInput("english").(string)
     
     home := os.Getenv("HOME")
-    intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "english.txt"}, "/")
+    intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium/english.txt"}, "/")
+    dir := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium"}, "/")
     
-    f, err1 := os.Create(intxt)
-    if err1 != nil {
-        log.Fatal(err1)
+    if _, err1 := os.Stat(dir); os.IsNotExist(err1) {
+        err2 := os.MkdirAll(dir, 0755)
+        if err2 != nil {
+            log.Fatal(err2)
+        }
     }
-    _, err2 := f.WriteString(english)
-    if err2 != nil {
-        log.Fatal(err2)
+    
+    f, err3 := os.OpenFile(intxt, os.O_CREATE|os.O_WRONLY, 0644)
+    if err3 != nil {
+        log.Fatal(err3)
+    }
+    
+    _, err4 := f.WriteString(english)
+    if err4 != nil {
+        log.Fatal(err4)
         f.Close()
     }
     f.Close()
@@ -53,12 +62,17 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     cmd.Stdout = &stdout
     cmd.Stderr = &stderr
     
-    err3 := cmd.Run()
-    if err3 != nil {
-        fmt.Println(fmt.Sprint(err3) + ": " + stderr.String())
-        log.Fatal(err3)
+    err5 := cmd.Run()
+    if err5 != nil {
+        fmt.Println(fmt.Sprint(err5) + ": " + stderr.String())
+        log.Fatal(err5)
     }
 
+    err6 := os.Remove(intxt)
+    if err6 != nil {
+        log.Fatal(err6)
+    }
+    
     context.SetOutput("spanish", stdout.String())
     
     return true, nil

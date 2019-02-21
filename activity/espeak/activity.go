@@ -31,30 +31,41 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
 
     // do eval
-    sender := context.GetInput("ip").(string)
-    req_id := context.GetInput("req_id").(string)
+    //sender := context.GetInput("ip").(string)
+    //req_id := context.GetInput("req_id").(string)
     text := context.GetInput("text").(string)
     
     home := os.Getenv("HOME")
-    //intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "spanish.txt"}, "/")
-    outwav := strings.Join([]string{home, "Documents/flogo/speech-translator/files", sender, req_id, "spanish.wav"}, "/")
+    outwav := strings.Join([]string{home, "Documents/flogo/speech-translator/files/espeak/spanish.wav"}, "/")
+    dir := strings.Join([]string{home, "Documents/flogo/speech-translator/files/espeak"}, "/")
     
-    //cmd := exec.Command("espeak-ng", "-ves", "-s", "140", "-f", intxt, "-w", outwav)
+    if _, err1 := os.Stat(dir); os.IsNotExist(err1) {
+        err2 := os.MkdirAll(dir, 0755)
+        if err2 != nil {
+            log.Fatal(err2)
+        }
+    }
+    
     cmd := exec.Command("espeak-ng", "-ves", "-s", "140", "-w", outwav, text)
     
     var stdout, stderr bytes.Buffer
     cmd.Stdout = &stdout
     cmd.Stderr = &stderr
     
-    err1 := cmd.Run()
-    if err1 != nil {
-        fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
-        log.Fatal(err1)
+    err3 := cmd.Run()
+    if err3 != nil {
+        fmt.Println(fmt.Sprint(err3) + ": " + stderr.String())
+        log.Fatal(err3)
     }
     
-    speech, err2 := ioutil.ReadFile(outwav)
-    if err2 != nil {
-        log.Fatal(err2)
+    speech, err4 := ioutil.ReadFile(outwav)
+    if err4 != nil {
+        log.Fatal(err4)
+    }
+    
+    err5 := os.Remove(outwav)
+    if err5 != nil {
+        log.Fatal(err5)
     }
     
     context.SetOutput("speech", speech)

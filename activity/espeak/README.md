@@ -18,14 +18,6 @@ Inputs and Outputs:
 {
   "inputs":[
     {
-      "name": "ip",
-      "type": "string"
-    },
-    {
-      "name": "req_id",
-      "type": "string"
-    },
-    {
       "name": "text",
       "type": "string"
     }
@@ -42,8 +34,6 @@ Inputs and Outputs:
 ## Inputs
 | Input   | Description    |
 |:----------|:---------------|
-| ip | The ip of the request sender |
-| req_id | The request id from the specified sender |
 | text | The text to be spoken |
 
 ## Outputs
