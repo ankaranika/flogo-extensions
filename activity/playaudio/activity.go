@@ -32,7 +32,15 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
 
     // do eval
 
-    audio := context.GetInput("audio").([]byte)
+    //audio := context.GetInput("audio").([]byte)
+    var audio []byte
+    var input interface{} = context.GetInput("audio")
+    //str, ok := input.(string)
+    if str, ok := input.(string); ok {
+        audio = []byte(str)
+    } else {
+        audio = input.([]byte)
+    }
     
     home := os.Getenv("HOME")
     audiofile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/playaudio/speech.wav"}, "/")
