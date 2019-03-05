@@ -61,8 +61,6 @@ func TestEval(t *testing.T) {
         log.Fatal(err2)
     }
     
-    //tc.SetInput("ip", "localhost")
-    //tc.SetInput("req_id", "1")
     tc.SetInput("speech", speech)
 
     act.Eval(tc)

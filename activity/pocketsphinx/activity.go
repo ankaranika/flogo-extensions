@@ -8,6 +8,7 @@ import (
     "bytes"
     "strings"
     "io/ioutil"
+    //"reflect"
     
     "github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
@@ -30,9 +31,15 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 // Eval implements activity.Activity.Eval
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     // do eval
-    //sender := context.GetInput("ip").(string)
-    //req_id := context.GetInput("req_id").(string)
-    speech := context.GetInput("speech").([]byte)
+    //speech := context.GetInput("speech").([]byte)
+    var speech []byte
+    var input interface{} = context.GetInput("speech")
+    //str, ok := input.(string)
+    if str, ok := input.(string); ok {
+        speech = []byte(str)
+    } else {
+        speech = input.([]byte)
+    }
     
     home := os.Getenv("HOME")
     exec_path := strings.Join([]string{home, "Documents/pocketsphinx/hello_ps"}, "/")
@@ -45,6 +52,9 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
             log.Fatal(err2)
         }
     }
+    
+    //fmt.Println(reflect.TypeOf(speech))
+    
     err3 := ioutil.WriteFile(inraw, speech, 0644)
     if err3 != nil {
         log.Fatal(err3)
