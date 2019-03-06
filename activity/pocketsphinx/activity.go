@@ -33,12 +33,11 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     // do eval
     //speech := context.GetInput("speech").([]byte)
     var speech []byte
+    var ok bool
     var input interface{} = context.GetInput("speech")
-    //str, ok := input.(string)
-    if str, ok := input.(string); ok {
-        speech = []byte(str)
-    } else {
-        speech = input.([]byte)
+    
+    if speech, ok = input.([]byte); !ok {
+        speech = []byte(input.(string))
     }
     
     home := os.Getenv("HOME")

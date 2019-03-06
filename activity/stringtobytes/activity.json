@@ -1,0 +1,20 @@
+{
+  "name": "String to Bytes",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "description": "Turns a string into raw bytes",
+  "ref": "github.com/ankaranika/activity/stringtobytes",
+  "author": "Anna Karanika <ankaranika@uth.gr>",
+  "inputs":[
+    {
+      "name": "str",
+      "type": "string"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "bytes",
+      "type": "array"
+    }
+  ]
+}
