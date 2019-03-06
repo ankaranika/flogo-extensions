@@ -1,5 +1,6 @@
 {
-  "name": "Bytes to String",
+  "name": "bytestostring",
+  "title": "Bytes to String",
   "version": "0.0.1",
   "type": "flogo:activity",
   "description": "Turns raw bytes to string",
