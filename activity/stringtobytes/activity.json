@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "flogo:activity",
   "description": "Turns a string into raw bytes",
-  "ref": "github.com/ankaranika/activity/stringtobytes",
+  "ref": "github.com/ankaranika/flogo-extensions/activity/stringtobytes",
   "author": "Anna Karanika <ankaranika@uth.gr>",
   "inputs":[
     {
