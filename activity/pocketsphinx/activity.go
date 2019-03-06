@@ -31,14 +31,7 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 // Eval implements activity.Activity.Eval
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     // do eval
-    //speech := context.GetInput("speech").([]byte)
-    var speech []byte
-    var ok bool
-    var input interface{} = context.GetInput("speech")
-    
-    if speech, ok = input.([]byte); !ok {
-        speech = []byte(input.(string))
-    }
+    speech := context.GetInput("speech").([]byte)
     
     home := os.Getenv("HOME")
     exec_path := strings.Join([]string{home, "Documents/pocketsphinx/hello_ps"}, "/")
@@ -51,8 +44,6 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
             log.Fatal(err2)
         }
     }
-    
-    //fmt.Println(reflect.TypeOf(speech))
     
     err3 := ioutil.WriteFile(inraw, speech, 0644)
     if err3 != nil {
