@@ -28,7 +28,7 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
 
     // do eval
-    cmd := exec.Command("arecord", "-f", "S16_LE", "-r16", "-c", "1", "-d", "5")
+    cmd := exec.Command("arecord", "-f", "S16_LE", "-r16", "-c", "1", "-d", "5", "-t", "raw")
     
     var stdout, stderr bytes.Buffer
     cmd.Stdout = &stdout
