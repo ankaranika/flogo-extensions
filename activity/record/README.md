@@ -16,6 +16,12 @@ Inputs and Outputs:
 
 ```json
 {
+  "inputs":[
+    {
+      "name": "audiotype",
+      "type": "string"
+    }
+  ],
   "outputs":[
     {
       "name": "recording",
@@ -24,7 +30,12 @@ Inputs and Outputs:
   ]
 }
 ```
+## Inputs
+| Input   | Description    |
+|:----------|:---------------|
+| audiotype | The desired type for the audio |
+
 ## Outputs
 | Output   | Description    |
 |:----------|:---------------|
-| recording | The recorded audio |
+| recording | The recorded audio in the selected type |

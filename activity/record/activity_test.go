@@ -54,14 +54,15 @@ func TestEval(t *testing.T) {
     tc := test.NewTestActivityContext(getActivityMetadata())
 
     //setup attrs
-
+    tc.SetInput("audiotype", "wav")
+    
     act.Eval(tc)
     
     //check result attr
     recording := tc.GetOutput("recording").([]byte)
     
     home := os.Getenv("HOME")
-    audiofile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/recording.raw"}, "/")
+    audiofile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/recording"}, "/")
     dir := strings.Join([]string{home, "Documents/flogo/speech-translator/files/"}, "/")
     
     if _, err1 := os.Stat(dir); os.IsNotExist(err1) {

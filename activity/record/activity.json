@@ -6,6 +6,14 @@
   "description": "Record audio from microphone for 5 seconds",
   "ref": "github.com/ankaranika/flogo-extensions/activity/record",
   "author": "Anna Karanika <ankaranika@uth.gr>",
+  "inputs":[
+    {
+      "name": "audiotype",
+      "type": "string",
+      "allowed": ["wav", "raw"],
+      "required": true
+    }
+  ],
   "outputs":[
     {
       "name": "recording",
