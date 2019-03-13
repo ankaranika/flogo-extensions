@@ -1,0 +1,21 @@
+{
+  "name": "audiorawtowav",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "title": "RAW to WAV",
+  "description": "Turn audio of type RAW to type WAV",
+  "ref": "github.com/ankaranika/flogo-extensions/activity/audiorawtowav",
+  "author": "Anna Karanika <ankaranika@uth.gr>",
+  "inputs":[
+    {
+      "name": "raw",
+      "type": "any"
+    }
+  ],
+  "outputs":[
+    {
+      "name": "wav",
+      "type": "any"
+    }
+  ]
+}
