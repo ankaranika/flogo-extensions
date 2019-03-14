@@ -7,6 +7,9 @@ import (
     "log"
     "bytes"
     "strings"
+    "strconv"
+    "math/rand"
+    "time"
     
     "github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
@@ -29,12 +32,14 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 // Eval implements activity.Activity.Eval
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     // do eval
-    //sender := context.GetInput("ip").(string)
-    //req_id := context.GetInput("req_id").(string)
+    
     english := context.GetInput("english").(string)
     
     home := os.Getenv("HOME")
-    intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium/english.txt"}, "/")
+    seed := rand.NewSource(time.Now().UnixNano())
+    rand := rand.New(seed)
+    randno := strconv.Itoa(rand.Intn(100))
+    intxt := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium/english" + randno + ".txt"}, "/")
     dir := strings.Join([]string{home, "Documents/flogo/speech-translator/files/apertium"}, "/")
     
     if _, err1 := os.Stat(dir); os.IsNotExist(err1) {

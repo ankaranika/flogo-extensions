@@ -8,7 +8,9 @@ import (
     "bytes"
     "strings"
     "io/ioutil"
-    //"reflect"
+    "strconv"
+    "math/rand"
+    "time"
     
     "github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
@@ -34,8 +36,12 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     speech := context.GetInput("speech").([]byte)
     
     home := os.Getenv("HOME")
+    seed := rand.NewSource(time.Now().UnixNano())
+    rand := rand.New(seed)
+    randno := strconv.Itoa(rand.Intn(100))
+    fmt.Println(randno)
     exec_path := strings.Join([]string{home, "Documents/pocketsphinx/hello_ps"}, "/")
-    inraw := strings.Join([]string{home, "Documents/flogo/speech-translator/files/pocketsphinx/speech.raw"}, "/")
+    inraw := strings.Join([]string{home, "Documents/flogo/speech-translator/files/pocketsphinx/speech" + randno + ".raw"}, "/")
     dir := strings.Join([]string{home, "Documents/flogo/speech-translator/files/pocketsphinx"}, "/")
     
     if _, err1 := os.Stat(dir); os.IsNotExist(err1) {

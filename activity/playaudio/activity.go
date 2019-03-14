@@ -8,6 +8,9 @@ import (
     "os/exec"
     "bytes"
     "fmt"
+    "strconv"
+    "math/rand"
+    "time"
     
     "github.com/TIBCOSoftware/flogo-lib/core/activity"
 )
@@ -43,7 +46,10 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     }
     
     home := os.Getenv("HOME")
-    audiofile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/playaudio/speech.wav"}, "/")
+    seed := rand.NewSource(time.Now().UnixNano())
+    rand := rand.New(seed)
+    randno := strconv.Itoa(rand.Intn(100))
+    audiofile := strings.Join([]string{home, "Documents/flogo/speech-translator/files/playaudio/speech" + randno + ".wav"}, "/")
     dir := strings.Join([]string{home, "Documents/flogo/speech-translator/files/playaudio"}, "/")
     
     if _, err1 := os.Stat(dir); os.IsNotExist(err1) {

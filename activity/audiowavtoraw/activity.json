@@ -1,6 +1,6 @@
 {
   "name": "audiowavtoraw",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "flogo:activity",
   "title": "WAV to RAW",
   "description": "Turn audio of type WAV to type RAW",

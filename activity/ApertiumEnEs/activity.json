@@ -1,6 +1,6 @@
 {
   "name": "ApertiumEnEs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "flogo:activity",
   "title": "Apertium en-es",
   "description": "Translate english text to spanish using Apertium",
