@@ -57,7 +57,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
         log.Fatal(err3)
     }
     
-    cmd := exec.Command("sox", "-b", "16", "-c", "1", "-r", "16k", "-t", "raw", "-e", "signed-integer", inraw, "-t", "wav", outwav)
+    cmd := exec.Command("sox", "-b", "16", "-c", "1", "-r", "16k", "-t", "raw", "-e", "signed-integer", inraw, outwav)
     
     var stdout, stderr bytes.Buffer
     cmd.Stdout = &stdout
@@ -74,7 +74,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
         log.Fatal(err5)
     }
     
-    err6 := os.Remove(inraw)
+    /*err6 := os.Remove(inraw)
     if err6 != nil {
         log.Fatal(err6)
     }
@@ -82,7 +82,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
     err7 := os.Remove(outwav)
     if err7 != nil {
         log.Fatal(err7)
-    }
+    }*/
     
     context.SetOutput("wav", wavaudio)
     
