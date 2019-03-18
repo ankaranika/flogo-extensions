@@ -56,7 +56,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error)  {
         log.Fatal(err3)
     }
     
-    cmd := exec.Command("sox", "-L", inwav, "-b", "16", "-c", "1", "-r", "16k", "-t", "raw", outraw)
+    cmd := exec.Command("sox", "-L", "-t", "wav", inwav, "-b", "16", "-c", "1", "-r", "16k", "-t", "raw", outraw)
     
     var stdout, stderr bytes.Buffer
     cmd.Stdout = &stdout
